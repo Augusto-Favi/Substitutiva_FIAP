@@ -52,7 +52,7 @@ prev_time = 0
 
 print(f"Processing video: {VIDEO_INPUT}")
 print(f"Total frames: {total_frames} | FPS: {fps:.1f} | Resolution: {width}x{height}")
-print(f"Output will be saved to: {output_filename}")
+print(f"Output will be saved to: {output_path}")
 
 def calculate_angle(a, b, c):
     """Calculate angle between three points (b is the vertex) in degrees"""
