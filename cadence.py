@@ -1,8 +1,10 @@
 import cv2
+import sys
 import numpy as np
 from ultralytics import YOLO
 from collections import defaultdict, deque
 from collections import Counter
+from tqdm import tqdm
 
 # Configuration
 OUTPUT_POSFIX = "cadence"
@@ -107,13 +109,15 @@ def main():
     next_id = 0
     frame_count = 0
     
+    # Initialize TQDM progress bar
+    pbar = tqdm(total=total_frames, desc="Processing Video", unit='frame', file=sys.stdout)
+    
     while cap.isOpened():
         ret, frame = cap.read()
         if not ret:
             break
         
         frame_count += 1
-        print(f"Processing frame {frame_count}/{total_frames}")
         
         # Run object detection
         obj_results = model_obj(frame, conf=0.5, classes=[0], verbose=False)[0]
@@ -443,12 +447,16 @@ def main():
         
         # Write frame to output
         out.write(frame)
+        
+        # Update progress bar
+        pbar.update(1)
     
     # Cleanup
     cap.release()
     out.release()
     cv2.destroyAllWindows()
-    print(f"Processing complete. Output saved to: {output_path}")
+    pbar.close()  # Close progress bar
+    print(f"\nProcessing complete. Output saved to: {output_path}")
 
 if __name__ == "__main__":
     main()

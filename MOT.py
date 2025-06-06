@@ -1,6 +1,7 @@
 import cv2
 import numpy as np
 from ultralytics import YOLO
+from tqdm import tqdm
 
 # Configuration
 OUTPUT_POSFIX = "MOT"
@@ -47,12 +48,14 @@ out = cv2.VideoWriter(output_path, fourcc, fps, (width, height))
 
 # Track stride history: {track_id: {'stride_times': [], 'prev_foot_y': float, 'state_history': []}}
 stride_data = {}
-frame_count = 0
 prev_time = 0
 
 print(f"Processing video: {VIDEO_INPUT}")
 print(f"Total frames: {total_frames} | FPS: {fps:.1f} | Resolution: {width}x{height}")
 print(f"Output will be saved to: {output_path}")
+
+# Initialize tqdm progress bar
+progress_bar = tqdm(total=total_frames, desc="Processing Frames", unit="frame")
 
 def calculate_angle(a, b, c):
     """Calculate angle between three points (b is the vertex) in degrees"""
@@ -91,8 +94,6 @@ while cap.isOpened():
         break
 
     current_time = cap.get(cv2.CAP_PROP_POS_MSEC) / 1000.0  # Current time in seconds
-    frame_count += 1
-    print(f"Processing frame {frame_count}/{total_frames}")
 
     # Run pose estimation with tracking
     results = model.track(
@@ -254,7 +255,9 @@ while cap.isOpened():
     
     out.write(frame)
     prev_time = current_time
+    progress_bar.update(1)  # Update progress bar
 
 cap.release()
 out.release()
+progress_bar.close()  # Ensure progress bar is closed
 print(f"\nProcessing complete. Output saved to: {output_path}")
