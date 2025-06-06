@@ -3,7 +3,7 @@ import numpy as np
 from ultralytics import YOLO
 
 # Configuration
-OUTPUT_POSFIX = "angles"
+OUTPUT_POSFIX = "MOT"
 MODEL = "yolo11n"
 VIDEO_FILE = "running4.mkv" # Input video file as MP4 or MKV format
 
@@ -92,7 +92,7 @@ while cap.isOpened():
 
     current_time = cap.get(cv2.CAP_PROP_POS_MSEC) / 1000.0  # Current time in seconds
     frame_count += 1
-    print(f"Processing frame {frame_count}/{total_frames}", end='\r')
+    print(f"Processing frame {frame_count}/{total_frames}")
 
     # Run pose estimation with tracking
     results = model.track(
@@ -257,4 +257,4 @@ while cap.isOpened():
 
 cap.release()
 out.release()
-print(f"\nProcessing complete. Output saved to: {output_filename}")
+print(f"\nProcessing complete. Output saved to: {output_path}")

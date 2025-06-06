@@ -5,8 +5,8 @@ from collections import defaultdict, deque
 from collections import Counter
 
 # Configuration
-OUTPUT_POSFIX = "angles"
-MODEL = "yolo11n"
+OUTPUT_POSFIX = "cadence"
+MODEL = "yolov8n"
 VIDEO_FILE = "running4.mkv" # Input video file as MP4 or MKV format
 
 # MODELS Directory
