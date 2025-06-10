@@ -20,5 +20,4 @@ analyser = VideoAnalyzer(
 )
 
 VIDEO_FILE = "traffic3.mp4"
-
 analyser.process_video(VIDEO_FILE)

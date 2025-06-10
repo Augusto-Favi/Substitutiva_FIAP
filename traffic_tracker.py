@@ -4,10 +4,13 @@ from ultralytics import YOLO
 from tqdm import tqdm
 import os
 from collections import defaultdict
+import json
+from datetime import datetime
 
 # Parametros =================================================================================================================================================
 
 CLASS_IDS = [2, 3, 5, 7]  # COCO class IDs for vehicles (car, motorcycle, bus, truck)
+CLASS_NAMES = {2: "car", 3: "motorcycle", 5: "bus", 7: "truck"}  # Mapping of class IDs to names
 TRACK_PERSIST = True  # Maintain tracking between frames
 MIN_DIRECTION_FRAMES = 5  # Minimum frames to determine direction
 SPEED_SMOOTHING = 5  # Number of frames to average speed over
@@ -34,22 +37,33 @@ class VideoAnalyzer():
     def __init__(self, model_name, distance_m, confidence_thresh):
         self.models_folder = "./models/"
         os.makedirs(self.models_folder, exist_ok=True)
+        self.model_name = model_name
         self.model = YOLO(os.path.join(self.models_folder, f'{model_name}.pt'))
         
         self.input_video = "videos/input/"
         self.output_dir = "videos/output/"
+        self.report_dir = "reports/"
         self.output_suffix = "_LIVE_SPEED"
 
         self.distance_m = distance_m
         self.confidence_thresh = confidence_thresh
+        
+        # For JSON reporting
+        self.vehicle_records = []
+        self.processing_date = datetime.now().isoformat()
 
     def process_video(self, video_file):
-
+        # Reset records for new video
+        self.vehicle_records = []
+        
         # Cofig directorys
         VIDEO_INPUT = os.path.join(self.input_video, video_file)
 
         os.makedirs(self.output_dir, exist_ok=True)
         output_path = os.path.join(self.output_dir, video_file.replace('.mp4', f'{self.output_suffix}.mp4'))
+        
+        # JSON report path
+        json_report_path = os.path.join(self.report_dir, video_file.replace('.mp4', '_report.json'))
 
         # Initialize video capture
         cap = cv2.VideoCapture(VIDEO_INPUT)
@@ -80,7 +94,10 @@ class VideoAnalyzer():
             'positions': [],
             'speed_history': [],
             'crossed_top': False,
-            'crossed_bottom': False
+            'crossed_bottom': False,
+            'class_id': None,        # Store vehicle class ID
+            'last_confidence': None,  # Store detection confidence
+            'record_added': False     # Track if record has been added
         })
         
         # Counters
@@ -111,8 +128,9 @@ class VideoAnalyzer():
                 boxes = results[0].boxes.xyxy.cpu().numpy()
                 track_ids = results[0].boxes.id.int().cpu().tolist()
                 confidences = results[0].boxes.conf.cpu().numpy()
+                class_ids = results[0].boxes.cls.int().cpu().tolist()
                 
-                for box, track_id, conf in zip(boxes, track_ids, confidences):
+                for box, track_id, conf, cls_id in zip(boxes, track_ids, confidences, class_ids):
                     x1, y1, x2, y2 = box
                     cx = int((x1 + x2) / 2)  # Center x-coordinate
                     cy = int((y1 + y2) / 2)  # Center y-coordinate
@@ -120,6 +138,11 @@ class VideoAnalyzer():
                     # Initialize vehicle info
                     info = vehicle_info[track_id]
                     info['positions'].append((cx, cy))
+                    info['last_confidence'] = float(conf)  # Update confidence
+                    
+                    # Set class ID on first detection
+                    if info['class_id'] is None:
+                        info['class_id'] = cls_id
                     
                     # Determine direction after sufficient frames
                     if len(info['positions']) >= MIN_DIRECTION_FRAMES:
@@ -186,6 +209,32 @@ class VideoAnalyzer():
                                 info['counted'] = True
                                 up_count += 1
                     
+                    # Create JSON record when vehicle is counted and not already added
+                    if info['counted'] and not info['record_added'] and info['speed'] is not None:
+                        # Get vehicle type name
+                        vehicle_type = CLASS_NAMES.get(info['class_id'], "unknown")
+                        
+                        # Create record
+                        record = {
+                            "unique_id": int(track_id),
+                            "timestamps": {
+                                "first_cross": float(info['first_cross_time']),
+                                "last_cross": float(info['last_cross_time'])
+                            },
+                            "registered_speed": float(info['speed']),
+                            "type_of_vehicle": vehicle_type,
+                            "side": info['direction'],
+                            "confidence": info['last_confidence'],
+                            "model_info": {
+                                "distance_M": float(self.distance_m),
+                                "model_name": self.model_name,
+                                "confidence_threshold": float(self.confidence_thresh),
+                                "date": self.processing_date
+                            }
+                        }
+                        self.vehicle_records.append(record)
+                        info['record_added'] = True  # Mark as added to prevent duplicates
+                    
                     # Visualization
                     box_color = DIRECTION_COLORS.get(info['direction'], (0, 255, 0))
                     
@@ -232,9 +281,36 @@ class VideoAnalyzer():
             # Write frame to output
             out.write(frame)
         
-        # Cleanup
         cap.release()
         out.release()
+        cv2.destroyAllWindows()
+
+        
+        # Save JSON report - pass counts as arguments
+        self.save_json_report(json_report_path, video_file, down_count, up_count)
+        
         print(f"Processing complete. Output saved to: {output_path}")
         print(f"Down vehicles: {down_count}, Up vehicles: {up_count}, Total: {down_count + up_count}")
-
+        
+    def save_json_report(self, json_path, video_file, down_count, up_count):
+        """Save collected data to JSON report"""
+        report = {
+            "processing_date": self.processing_date,
+            "video_file": video_file,
+            "model_info": {
+                "model_name": self.model_name,
+                "distance_M": float(self.distance_m),
+                "confidence_threshold": float(self.confidence_thresh)
+            },
+            "vehicle_count": {
+                "down": down_count,
+                "up": up_count,
+                "total": down_count + up_count
+            },
+            "vehicles": self.vehicle_records
+        }
+        
+        with open(json_path, 'w') as f:
+            json.dump(report, f, indent=2)
+        
+        print(f"JSON report saved to: {json_path}")

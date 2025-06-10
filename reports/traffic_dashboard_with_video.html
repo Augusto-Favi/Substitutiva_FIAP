@@ -1,0 +1,894 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relatório de Tráfego - Dashboard com Vídeo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            font-weight: 300;
+        }
+        
+        .header .subtitle {
+            font-size: 1.1em;
+            opacity: 0.8;
+        }
+        
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 400px;
+            gap: 30px;
+            padding: 30px;
+        }
+        
+        .left-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+        
+        .right-panel {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 15px;
+            max-height: calc(100vh - 200px);
+            overflow-y: auto;
+        }
+        
+        .video-section {
+            background: #000;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            height: 0;
+        }
+        
+        /* Updated iframe styles */
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        .video-controls {
+            background: rgba(0,0,0,0.8);
+            color: white;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .video-info {
+            flex: 1;
+            font-size: 0.9em;
+        }
+        
+        .current-time {
+            font-weight: bold;
+            color: #4CAF50;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+        
+        .stat-card {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .stat-number {
+            font-size: 2.2em;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        
+        .stat-label {
+            color: #7f8c8d;
+            font-size: 1em;
+        }
+        
+        .anomalies-section {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+        
+        .section-title {
+            font-size: 1.8em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .panel-title {
+            font-size: 1.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .anomaly-card {
+            background: white;
+            border-left: 5px solid;
+            margin-bottom: 15px;
+            padding: 15px;
+            border-radius: 0 10px 10px 0;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .anomaly-card:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+        }
+        
+        .anomaly-card.playing {
+            background: #e8f5e8;
+            border-left-width: 8px;
+        }
+        
+        .anomaly-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+        
+        .anomaly-id {
+            font-weight: bold;
+            font-size: 1.1em;
+            color: #2c3e50;
+        }
+        
+        .severity-badge {
+            padding: 4px 12px;
+            border-radius: 15px;
+            color: white;
+            font-weight: bold;
+            font-size: 0.8em;
+        }
+        
+        .anomaly-speed {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #e74c3c;
+            margin-bottom: 8px;
+        }
+        
+        .anomaly-timestamp {
+            font-size: 0.9em;
+            color: #7f8c8d;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .play-icon {
+            width: 16px;
+            height: 16px;
+            background: #4CAF50;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 10px;
+        }
+        
+        .anomaly-details {
+            display: none;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #ecf0f1;
+        }
+        
+        .anomaly-details.show {
+            display: block;
+            animation: slideDown 0.3s ease;
+        }
+        
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                max-height: 0;
+            }
+            to {
+                opacity: 1;
+                max-height: 200px;
+            }
+        }
+        
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-size: 0.9em;
+        }
+        
+        .detail-label {
+            font-weight: bold;
+            color: #7f8c8d;
+        }
+        
+        .detail-value {
+            color: #2c3e50;
+        }
+        
+        .footer {
+            background: #34495e;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9em;
+        }
+        
+        .no-anomalies {
+            text-align: center;
+            padding: 40px;
+            color: #27ae60;
+            font-size: 1.2em;
+        }
+        
+        @media (max-width: 1200px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .right-panel {
+                max-height: 500px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .stat-number {
+                font-size: 1.8em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Dashboard de Tráfego com Vídeo</h1>
+            <div class="subtitle">Relatório de Análise de Velocidade - traffic3.mp4</div>
+            <div class="subtitle">Processado em: 10/06/2025 às 19:27</div>
+        </div>
+        
+        <div class="main-content">
+            <div class="left-panel">
+                <div class="video-section">
+                    <div class="video-container">
+                        <!-- Replaced video element with iframe -->
+                        <iframe id="trafficVideo" 
+                                src="../videos/output/traffic3_LIVE_SPEED.mp4" 
+                                frameborder="0" 
+                                allowfullscreen
+                                allow="autoplay">
+                        </iframe>
+                    </div>
+                    <div class="video-controls">
+                        <div class="video-info">
+                            <div>Clique nas anomalias para navegar no vídeo</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-number">21</div>
+                        <div class="stat-label">Total de Veículos</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">8</div>
+                        <div class="stat-label">Direção Norte</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">13</div>
+                        <div class="stat-label">Direção Sul</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">80.7</div>
+                        <div class="stat-label">Velocidade Média (km/h)</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">14</div>
+                        <div class="stat-label">Anomalias Detectadas</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">8.0m</div>
+                        <div class="stat-label">Distância de Medição</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="right-panel">
+                <h2 class="panel-title">🚨 Anomalias de Velocidade</h2>
+
+                <div class="anomaly-card" style="border-left-color: #CC0000;" onclick="seekToAnomaly(0.13, 1)">
+                    <div class="anomaly-header">
+                        <div class="anomaly-id">Veículo #1</div>
+                        <div class="severity-badge" style="background-color: #CC0000;">
+                            Crítica
+                        </div>
+                    </div>
+                    <div class="anomaly-speed">288.01 km/h</div>
+                    <div class="anomaly-timestamp">
+                        <span class="play-icon">▶</span>
+                        0.13s - 0.23s
+                    </div>
+                    <div class="anomaly-details" id="anomaly-1">
+                        <div class="detail-row">
+                            <span class="detail-label">Tipo:</span>
+                            <span class="detail-value">Car</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Direção:</span>
+                            <span class="detail-value">Norte</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Confiança:</span>
+                            <span class="detail-value">76.6%</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Severidade:</span>
+                            <span class="detail-value">4/4</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="anomaly-card" style="border-left-color: #FF4444;" onclick="seekToAnomaly(0.63, 4)">
+                    <div class="anomaly-header">
+                        <div class="anomaly-id">Veículo #4</div>
+                        <div class="severity-badge" style="background-color: #FF4444;">
+                            Alta
+                        </div>
+                    </div>
+                    <div class="anomaly-speed">96.0 km/h</div>
+                    <div class="anomaly-timestamp">
+                        <span class="play-icon">▶</span>
+                        0.63s - 0.93s
+                    </div>
+                    <div class="anomaly-details" id="anomaly-4">
+                        <div class="detail-row">
+                            <span class="detail-label">Tipo:</span>
+                            <span class="detail-value">Car</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Direção:</span>
+                            <span class="detail-value">Sul</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Confiança:</span>
+                            <span class="detail-value">84.0%</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Severidade:</span>
+                            <span class="detail-value">3/4</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="anomaly-card" style="border-left-color: #FF4444;" onclick="seekToAnomaly(2.03, 7)">
+                    <div class="anomaly-header">
+                        <div class="anomaly-id">Veículo #7</div>
+                        <div class="severity-badge" style="background-color: #FF4444;">
+                            Alta
+                        </div>
+                    </div>
+                    <div class="anomaly-speed">96.0 km/h</div>
+                    <div class="anomaly-timestamp">
+                        <span class="play-icon">▶</span>
+                        2.03s - 2.33s
+                    </div>
+                    <div class="anomaly-details" id="anomaly-7">
+                        <div class="detail-row">
+                            <span class="detail-label">Tipo:</span>
+                            <span class="detail-value">Car</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Direção:</span>
+                            <span class="detail-value">Sul</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Confiança:</span>
+                            <span class="detail-value">66.9%</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Severidade:</span>
+                            <span class="detail-value">3/4</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="anomaly-card" style="border-left-color: #FF4444;" onclick="seekToAnomaly(3.53, 14)">
+                    <div class="anomaly-header">
+                        <div class="anomaly-id">Veículo #14</div>
+                        <div class="severity-badge" style="background-color: #FF4444;">
+                            Alta
+                        </div>
+                    </div>
+                    <div class="anomaly-speed">96.0 km/h</div>
+                    <div class="anomaly-timestamp">
+                        <span class="play-icon">▶</span>
+                        3.53s - 3.83s
+                    </div>
+                    <div class="anomaly-details" id="anomaly-14">
+                        <div class="detail-row">
+                            <span class="detail-label">Tipo:</span>
+                            <span class="detail-value">Car</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Direção:</span>
+                            <span class="detail-value">Sul</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Confiança:</span>
+                            <span class="detail-value">81.1%</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Severidade:</span>
+                            <span class="detail-value">3/4</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="anomaly-card" style="border-left-color: #FF6B35;" onclick="seekToAnomaly(0.23, 5)">
+                    <div class="anomaly-header">
+                        <div class="anomaly-id">Veículo #5</div>
+                        <div class="severity-badge" style="background-color: #FF6B35;">
+                            Média
+                        </div>
+                    </div>
+                    <div class="anomaly-speed">86.4 km/h</div>
+                    <div class="anomaly-timestamp">
+                        <span class="play-icon">▶</span>
+                        0.23s - 0.57s
+                    </div>
+                    <div class="anomaly-details" id="anomaly-5">
+                        <div class="detail-row">
+                            <span class="detail-label">Tipo:</span>
+                            <span class="detail-value">Car</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Direção:</span>
+                            <span class="detail-value">Sul</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Confiança:</span>
+                            <span class="detail-value">70.5%</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Severidade:</span>
+                            <span class="detail-value">2/4</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="anomaly-card" style="border-left-color: #FF6B35;" onclick="seekToAnomaly(1.23, 2)">
+                    <div class="anomaly-header">
+                        <div class="anomaly-id">Veículo #2</div>
+                        <div class="severity-badge" style="background-color: #FF6B35;">
+                            Média
+                        </div>
+                    </div>
+                    <div class="anomaly-speed">86.4 km/h</div>
+                    <div class="anomaly-timestamp">
+                        <span class="play-icon">▶</span>
+                        1.23s - 1.57s
+                    </div>
+                    <div class="anomaly-details" id="anomaly-2">
+                        <div class="detail-row">
+                            <span class="detail-label">Tipo:</span>
+                            <span class="detail-value">Car</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Direção:</span>
+                            <span class="detail-value">Sul</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Confiança:</span>
+                            <span class="detail-value">85.2%</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Severidade:</span>
+                            <span class="detail-value">2/4</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="anomaly-card" style="border-left-color: #FF6B35;" onclick="seekToAnomaly(4.4, 40)">
+                    <div class="anomaly-header">
+                        <div class="anomaly-id">Veículo #40</div>
+                        <div class="severity-badge" style="background-color: #FF6B35;">
+                            Média
+                        </div>
+                    </div>
+                    <div class="anomaly-speed">86.4 km/h</div>
+                    <div class="anomaly-timestamp">
+                        <span class="play-icon">▶</span>
+                        4.4s - 4.73s
+                    </div>
+                    <div class="anomaly-details" id="anomaly-40">
+                        <div class="detail-row">
+                            <span class="detail-label">Tipo:</span>
+                            <span class="detail-value">Car</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Direção:</span>
+                            <span class="detail-value">Sul</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Confiança:</span>
+                            <span class="detail-value">77.1%</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Severidade:</span>
+                            <span class="detail-value">2/4</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="anomaly-card" style="border-left-color: #FF6B35;" onclick="seekToAnomaly(6.8, 87)">
+                    <div class="anomaly-header">
+                        <div class="anomaly-id">Veículo #87</div>
+                        <div class="severity-badge" style="background-color: #FF6B35;">
+                            Média
+                        </div>
+                    </div>
+                    <div class="anomaly-speed">86.4 km/h</div>
+                    <div class="anomaly-timestamp">
+                        <span class="play-icon">▶</span>
+                        6.8s - 7.13s
+                    </div>
+                    <div class="anomaly-details" id="anomaly-87">
+                        <div class="detail-row">
+                            <span class="detail-label">Tipo:</span>
+                            <span class="detail-value">Car</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Direção:</span>
+                            <span class="detail-value">Sul</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Confiança:</span>
+                            <span class="detail-value">77.3%</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Severidade:</span>
+                            <span class="detail-value">2/4</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="anomaly-card" style="border-left-color: #FFA500;" onclick="seekToAnomaly(2.5, 12)">
+                    <div class="anomaly-header">
+                        <div class="anomaly-id">Veículo #12</div>
+                        <div class="severity-badge" style="background-color: #FFA500;">
+                            Baixa
+                        </div>
+                    </div>
+                    <div class="anomaly-speed">78.55 km/h</div>
+                    <div class="anomaly-timestamp">
+                        <span class="play-icon">▶</span>
+                        2.5s - 2.87s
+                    </div>
+                    <div class="anomaly-details" id="anomaly-12">
+                        <div class="detail-row">
+                            <span class="detail-label">Tipo:</span>
+                            <span class="detail-value">Car</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Direção:</span>
+                            <span class="detail-value">Sul</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Confiança:</span>
+                            <span class="detail-value">78.0%</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Severidade:</span>
+                            <span class="detail-value">1/4</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="anomaly-card" style="border-left-color: #FFA500;" onclick="seekToAnomaly(5.3, 53)">
+                    <div class="anomaly-header">
+                        <div class="anomaly-id">Veículo #53</div>
+                        <div class="severity-badge" style="background-color: #FFA500;">
+                            Baixa
+                        </div>
+                    </div>
+                    <div class="anomaly-speed">78.55 km/h</div>
+                    <div class="anomaly-timestamp">
+                        <span class="play-icon">▶</span>
+                        5.3s - 5.67s
+                    </div>
+                    <div class="anomaly-details" id="anomaly-53">
+                        <div class="detail-row">
+                            <span class="detail-label">Tipo:</span>
+                            <span class="detail-value">Car</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Direção:</span>
+                            <span class="detail-value">Sul</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Confiança:</span>
+                            <span class="detail-value">75.6%</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Severidade:</span>
+                            <span class="detail-value">1/4</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="anomaly-card" style="border-left-color: #FFA500;" onclick="seekToAnomaly(5.83, 61)">
+                    <div class="anomaly-header">
+                        <div class="anomaly-id">Veículo #61</div>
+                        <div class="severity-badge" style="background-color: #FFA500;">
+                            Baixa
+                        </div>
+                    </div>
+                    <div class="anomaly-speed">78.55 km/h</div>
+                    <div class="anomaly-timestamp">
+                        <span class="play-icon">▶</span>
+                        5.83s - 6.2s
+                    </div>
+                    <div class="anomaly-details" id="anomaly-61">
+                        <div class="detail-row">
+                            <span class="detail-label">Tipo:</span>
+                            <span class="detail-value">Car</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Direção:</span>
+                            <span class="detail-value">Sul</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Confiança:</span>
+                            <span class="detail-value">80.9%</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Severidade:</span>
+                            <span class="detail-value">1/4</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="anomaly-card" style="border-left-color: #FFA500;" onclick="seekToAnomaly(6.2, 82)">
+                    <div class="anomaly-header">
+                        <div class="anomaly-id">Veículo #82</div>
+                        <div class="severity-badge" style="background-color: #FFA500;">
+                            Baixa
+                        </div>
+                    </div>
+                    <div class="anomaly-speed">72.0 km/h</div>
+                    <div class="anomaly-timestamp">
+                        <span class="play-icon">▶</span>
+                        6.2s - 6.6s
+                    </div>
+                    <div class="anomaly-details" id="anomaly-82">
+                        <div class="detail-row">
+                            <span class="detail-label">Tipo:</span>
+                            <span class="detail-value">Car</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Direção:</span>
+                            <span class="detail-value">Sul</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Confiança:</span>
+                            <span class="detail-value">65.9%</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Severidade:</span>
+                            <span class="detail-value">1/4</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="anomaly-card" style="border-left-color: #FFA500;" onclick="seekToAnomaly(6.63, 84)">
+                    <div class="anomaly-header">
+                        <div class="anomaly-id">Veículo #84</div>
+                        <div class="severity-badge" style="background-color: #FFA500;">
+                            Baixa
+                        </div>
+                    </div>
+                    <div class="anomaly-speed">78.55 km/h</div>
+                    <div class="anomaly-timestamp">
+                        <span class="play-icon">▶</span>
+                        6.63s - 7.0s
+                    </div>
+                    <div class="anomaly-details" id="anomaly-84">
+                        <div class="detail-row">
+                            <span class="detail-label">Tipo:</span>
+                            <span class="detail-value">Car</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Direção:</span>
+                            <span class="detail-value">Sul</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Confiança:</span>
+                            <span class="detail-value">80.7%</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Severidade:</span>
+                            <span class="detail-value">1/4</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="anomaly-card" style="border-left-color: #FFA500;" onclick="seekToAnomaly(7.2, 97)">
+                    <div class="anomaly-header">
+                        <div class="anomaly-id">Veículo #97</div>
+                        <div class="severity-badge" style="background-color: #FFA500;">
+                            Baixa
+                        </div>
+                    </div>
+                    <div class="anomaly-speed">78.55 km/h</div>
+                    <div class="anomaly-timestamp">
+                        <span class="play-icon">▶</span>
+                        7.2s - 7.57s
+                    </div>
+                    <div class="anomaly-details" id="anomaly-97">
+                        <div class="detail-row">
+                            <span class="detail-label">Tipo:</span>
+                            <span class="detail-value">Car</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Direção:</span>
+                            <span class="detail-value">Sul</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Confiança:</span>
+                            <span class="detail-value">82.1%</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Severidade:</span>
+                            <span class="detail-value">1/4</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        
+        <div class="footer">
+            Relatório gerado automaticamente usando modelo yolo11n 
+            com limiar de confiança de 0.2
+        </div>
+    </div>
+    
+    <script>
+        const iframe = document.getElementById('trafficVideo');
+        let currentPlayingCard = null;
+        
+        // Function to seek to anomaly timestamp
+        function seekToAnomaly(timestamp, vehicleId) {
+            // Remove previous playing indicator
+            if (currentPlayingCard) {
+                currentPlayingCard.classList.remove('playing');
+            }
+            
+            // Add playing indicator to current card
+            const currentCard = event.currentTarget;
+            currentCard.classList.add('playing');
+            currentPlayingCard = currentCard;
+            
+            // Create new source URL with timestamp parameter
+            const baseUrl = "../videos/output/traffic3_LIVE_SPEED.mp4";
+            const newUrl = `${baseUrl}#t=${timestamp}`;
+            
+            // Update iframe source
+            iframe.src = newUrl;
+            
+            // Toggle details
+            toggleDetails(`anomaly-${vehicleId}`);
+            
+            // Remove playing indicator after 3 seconds
+            setTimeout(() => {
+                if (currentPlayingCard) {
+                    currentPlayingCard.classList.remove('playing');
+                }
+            }, 3000);
+        }
+        
+        function toggleDetails(elementId) {
+            const details = document.getElementById(elementId);
+            if (details.classList.contains('show')) {
+                details.classList.remove('show');
+            } else {
+                // Hide all other details first
+                document.querySelectorAll('.anomaly-details.show').forEach(el => {
+                    el.classList.remove('show');
+                });
+                // Show the clicked one
+                details.classList.add('show');
+            }
+        }
+        
+        // Add hover effects
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.anomaly-card');
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    if (!this.classList.contains('playing')) {
+                        this.style.transform = 'translateX(5px)';
+                    }
+                });
+                card.addEventListener('mouseleave', function() {
+                    if (!this.classList.contains('playing')) {
+                        this.style.transform = 'translateX(0)';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
