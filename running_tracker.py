@@ -6,7 +6,7 @@ from tqdm import tqdm
 # Configuration
 OUTPUT_POSFIX = "MOT"
 MODEL = "yolo11n"
-VIDEO_FILE = "paces.mp4"
+VIDEO_FILE = "running3.mkv"
 # MODELS Directory
 MODEL_POSE = f"./models/{MODEL}-pose.pt"
 MODEL_OBJ =  f"./models/{MODEL}.pt"

@@ -22,7 +22,7 @@ analyser = VideoAnalyzer(
     confidence_thresh=CONFIDENCE_THRESH,
 )
 
-# analyser.process_video(f'{VIDEO_FILE}.mp4')
+analyser.process_video(f'{VIDEO_FILE}.mp4')
 
 # GERA RELÁTORIO =========================================================================================================================================================
 generator = TrafficReportGeneratorWithVideo(video_path = f"../videos/output/{VIDEO_FILE}{analyser.get_output_suffix()}.webm", json_file_path = f"reports/{VIDEO_FILE}_report.json")
