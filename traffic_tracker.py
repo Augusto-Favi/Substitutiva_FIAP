@@ -1,4 +1,6 @@
 import cv2
+import shutil
+import subprocess
 import numpy as np
 from ultralytics import YOLO
 from tqdm import tqdm
@@ -10,19 +12,18 @@ from datetime import datetime
 # Parametros =================================================================================================================================================
 
 CLASS_IDS = [2, 3, 5, 7]  # COCO class IDs for vehicles (car, motorcycle, bus, truck)
-CLASS_NAMES = {2: "car", 3: "motorcycle", 5: "bus", 7: "truck"}  # Mapping of class IDs to names
-TRACK_PERSIST = True  # Maintain tracking between frames
+CLASS_NAMES = {2: "Carro", 3: "Motocicleta", 5: "Onibús", 7: "Caminhao"}  # Mapping of class IDs to names
 MIN_DIRECTION_FRAMES = 5  # Minimum frames to determine direction
 SPEED_SMOOTHING = 5  # Number of frames to average speed over
 
-# Visualization settings
-SHOW_SPEED = True  # Display speed on video
-SHOW_IDS = True  # Display tracking IDs
-SHOW_LINES = True  # Display measurement lines
-SHOW_BOXES = True  # Show bounding boxes
-SHOW_COUNTS = True  # Display vehicle counts
+# Vizualicação =================================================================================================================================================
+TRACK_PERSIST = True
+SHOW_SPEED = True
+SHOW_IDS = True
+SHOW_LINES = True
+SHOW_BOXES = True
+SHOW_COUNTS = True
 
-# Colors for visualization
 DIRECTION_COLORS = {
     "up": (0, 255, 255),  # YELLOW
     "down": (255, 0, 0)    # BLUE
@@ -52,15 +53,16 @@ class VideoAnalyzer():
         self.vehicle_records = []
         self.processing_date = datetime.now().isoformat()
 
+    def get_output_suffix(self):
+        return self.output_suffix
+
     def process_video(self, video_file):
-        # Reset records for new video
         self.vehicle_records = []
         
-        # Cofig directorys
+        # Config directories
         VIDEO_INPUT = os.path.join(self.input_video, video_file)
-
         os.makedirs(self.output_dir, exist_ok=True)
-        output_path = os.path.join(self.output_dir, video_file.replace('.mp4', f'{self.output_suffix}.mp4'))
+        output_path = os.path.join(self.output_dir, video_file.replace('.mp4', f'{self.output_suffix}.webm'))
         
         # JSON report path
         json_report_path = os.path.join(self.report_dir, video_file.replace('.mp4', '_report.json'))
@@ -77,12 +79,23 @@ class VideoAnalyzer():
         total_frames = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
         
         # Calculate line positions (horizontal lines for vertical movement)
-        line_top = (height // 2) + 120
+        line_top = (height // 2) + 80
         line_bottom = line_top + 80
         
-        # Initialize video writer
-        fourcc = cv2.VideoWriter_fourcc(*'mp4v')
+        # Initialize video writer with VP9 codec for web compatibility
+        fourcc = cv2.VideoWriter_fourcc(*'VP90')
         out = cv2.VideoWriter(output_path, fourcc, fps, (width, height))
+        
+        # If VP9 not available, fall back to H264
+        if not out.isOpened():
+            print("VP9 codec not available, falling back to H264")
+            output_path = output_path.replace('.webm', '.mp4')
+            fourcc = cv2.VideoWriter_fourcc(*'avc1')  # H264 codec
+            out = cv2.VideoWriter(output_path, fourcc, fps, (width, height))
+            if not out.isOpened():
+                print("H264 codec not available, falling back to MP4V")
+                fourcc = cv2.VideoWriter_fourcc(*'mp4v')
+                out = cv2.VideoWriter(output_path, fourcc, fps, (width, height))
         
         # Tracking data storage
         vehicle_info = defaultdict(lambda: {
@@ -95,9 +108,9 @@ class VideoAnalyzer():
             'speed_history': [],
             'crossed_top': False,
             'crossed_bottom': False,
-            'class_id': None,        # Store vehicle class ID
-            'last_confidence': None,  # Store detection confidence
-            'record_added': False     # Track if record has been added
+            'class_id': None,
+            'last_confidence': None,
+            'record_added': False
         })
         
         # Counters
@@ -105,7 +118,7 @@ class VideoAnalyzer():
         up_count = 0
         frame_count = 0
 
-        # Process video frames
+       # Process video frames
         for _ in tqdm(range(total_frames), desc="Processing Frames"):
             ret, frame = cap.read()
             if not ret:
@@ -117,9 +130,9 @@ class VideoAnalyzer():
             # Run object tracking
             results = self.model.track(
                 frame,
-                persist = TRACK_PERSIST,
-                classes = CLASS_IDS,
-                conf = self.confidence_thresh,
+                persist=TRACK_PERSIST,
+                classes=CLASS_IDS,
+                conf=self.confidence_thresh,
                 verbose=False
             )
             
@@ -134,6 +147,9 @@ class VideoAnalyzer():
                     x1, y1, x2, y2 = box
                     cx = int((x1 + x2) / 2)  # Center x-coordinate
                     cy = int((y1 + y2) / 2)  # Center y-coordinate
+
+                    if frame_count < 36 and (line_top <= y1 <= line_bottom):
+                        continue
                     
                     # Initialize vehicle info
                     info = vehicle_info[track_id]
@@ -284,6 +300,25 @@ class VideoAnalyzer():
         cap.release()
         out.release()
         cv2.destroyAllWindows()
+
+        # After processing, convert to web-friendly format if needed
+        if not output_path.endswith('.webm'):
+            try:
+                webm_path = output_path.replace('.mp4', '.webm')
+                # Use FFmpeg for conversion if available
+                if shutil.which('ffmpeg'):
+                    cmd = [
+                        'ffmpeg', '-i', output_path,
+                        '-c:v', 'libvpx-vp9', '-b:v', '2M', 
+                        '-c:a', 'libopus', '-b:a', '64k',
+                        '-f', 'webm', webm_path
+                    ]
+                    subprocess.run(cmd, check=True)
+                    os.remove(output_path)  # Remove original
+                    output_path = webm_path
+                    print(f"Converted video to web-friendly format: {webm_path}")
+            except Exception as e:
+                print(f"Video conversion failed: {e}")
 
         
         # Save JSON report - pass counts as arguments

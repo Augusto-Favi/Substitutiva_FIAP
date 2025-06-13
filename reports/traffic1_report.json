@@ -1,0 +1,1393 @@
+{
+  "processing_date": "2025-06-11T16:03:22.211175",
+  "video_file": "traffic1.mp4",
+  "model_info": {
+    "model_name": "yolo11n",
+    "distance_M": 12.0,
+    "confidence_threshold": 0.2
+  },
+  "vehicle_count": {
+    "down": 43,
+    "up": 38,
+    "total": 81
+  },
+  "vehicles": [
+    {
+      "unique_id": 5,
+      "timestamps": {
+        "first_cross": 1.63329883843717,
+        "last_cross": 2.066623020063358
+      },
+      "registered_speed": 99.69441317093856,
+      "type_of_vehicle": "Carro",
+      "side": "down",
+      "confidence": 0.8460556864738464,
+      "model_info": {
+        "distance_M": 12.0,
+        "model_name": "yolo11n",
+        "confidence_threshold": 0.2,
+        "date": "2025-06-11T16:03:22.211175"
+      }
+    },
+    {
+      "unique_id": 11,
+      "timestamps": {
+        "first_cross": 1.2666399155227033,
+        "last_cross": 2.333284054910243
+      },
+      "registered_speed": 40.50085535069378,
+      "type_of_vehicle": "Carro",
+      "side": "up",
+      "confidence": 0.6244038343429565,
+      "model_info": {
+        "distance_M": 12.0,
+        "model_name": "yolo11n",
+        "confidence_threshold": 0.2,
+        "date": "2025-06-11T16:03:22.211175"
+      }
+    },
+    {
+      "unique_id": 17,
+      "timestamps": {
+        "first_cross": 1.466635691657867,
+        "last_cross": 2.6332777191129884
+      },
+      "registered_speed": 37.02935346349146,
+      "type_of_vehicle": "Carro",
+      "side": "up",
+      "confidence": 0.7158398628234863,
+      "model_info": {
+        "distance_M": 12.0,
+        "model_name": "yolo11n",
+        "confidence_threshold": 0.2,
+        "date": "2025-06-11T16:03:22.211175"
+      }
+    },
+    {
+      "unique_id": 28,
+      "timestamps": {
+        "first_cross": 1.6666314677930307,
+        "last_cross": 2.6332777191129884
+      },
+      "registered_speed": 44.690599007662115,
+      "type_of_vehicle": "Carro",
+      "side": "up",
+      "confidence": 0.7246726751327515,
+      "model_info": {
+        "distance_M": 12.0,
+        "model_name": "yolo11n",
+        "confidence_threshold": 0.2,
+        "date": "2025-06-11T16:03:22.211175"
+      }
+    },
+    {
+      "unique_id": 74,
+      "timestamps": {
+        "first_cross": 3.5665913410770855,
+        "last_cross": 4.533237592397043
+      },
+      "registered_speed": 44.690599007662115,
+      "type_of_vehicle": "Carro",
+      "side": "up",
+      "confidence": 0.818239688873291,
+      "model_info": {
+        "distance_M": 12.0,
+        "model_name": "yolo11n",
+        "confidence_threshold": 0.2,
+        "date": "2025-06-11T16:03:22.211175"
+      }
+    },
+    {
+      "unique_id": 81,
+      "timestamps": {
+        "first_cross": 3.533258711721225,
+        "last_cross": 4.733233368532207
+      },
+      "registered_speed": 36.00076031172782,
+      "type_of_vehicle": "Carro",
+      "side": "up",
+      "confidence": 0.5366170406341553,
+      "model_info": {
+        "distance_M": 12.0,
+        "model_name": "yolo11n",
+        "confidence_threshold": 0.2,
+        "date": "2025-06-11T16:03:22.211175"
+      }
+    },
+    {
+      "unique_id": 76,
+      "timestamps": {
+        "first_cross": 4.599902851108765,
+        "last_cross": 5.066559662090813
+      },
+      "registered_speed": 92.57338365872873,
+      "type_of_vehicle": "Carro",
+      "side": "down",
+      "confidence": 0.7966285943984985,
+      "model_info": {
+        "distance_M": 12.0,
+        "model_name": "yolo11n",
+        "confidence_threshold": 0.2,
+        "date": "2025-06-11T16:03:22.211175"
+      }
+    },
+    {
+      "unique_id": 94,
+      "timestamps": {
+        "first_cross": 4.233243928194298,
+        "last_cross": 5.333220696937698
+      },
+      "registered_speed": 39.273556703703086,
+      "type_of_vehicle": "Carro",
+      "side": "up",
+      "confidence": 0.6865556836128235,
+      "model_info": {
+        "distance_M": 12.0,
+        "model_name": "yolo11n",
+        "confidence_threshold": 0.2,
+        "date": "2025-06-11T16:03:22.211175"
+      }
+    },
+    {
+      "unique_id": 114,
+      "timestamps": {
+        "first_cross": 4.833231256599789,
+        "last_cross": 5.766544878563886
+      },
+      "registered_speed": 46.28669182936432,
+      "type_of_vehicle": "Carro",
+      "side": "up",
+      "confidence": 0.7316325902938843,
+      "model_info": {
+        "distance_M": 12.0,
+        "model_name": "yolo11n",
+        "confidence_threshold": 0.2,
+        "date": "2025-06-11T16:03:22.211175"
+      }
+    },
+    {
+      "unique_id": 117,
+      "timestamps": {
+        "first_cross": 5.699879619852164,
+        "last_cross": 6.133203801478353
+      },
+      "registered_speed": 99.69441317093842,
+      "type_of_vehicle": "Carro",
+      "side": "down",
+      "confidence": 0.7915902137756348,
+      "model_info": {
+        "distance_M": 12.0,
+        "model_name": "yolo11n",
+        "confidence_threshold": 0.2,
+        "date": "2025-06-11T16:03:22.211175"
+      }
+    },
+    {
+      "unique_id": 130,
+      "timestamps": {
+        "first_cross": 5.96654065469905,
+        "last_cross": 6.466530095036959
+      },
+      "registered_speed": 86.40182474814668,
+      "type_of_vehicle": "Carro",
+      "side": "down",
+      "confidence": 0.676708459854126,
+      "model_info": {
+        "distance_M": 12.0,
+        "model_name": "yolo11n",
+        "confidence_threshold": 0.2,
+        "date": "2025-06-11T16:03:22.211175"
+      }
+    },
+    {
+      "unique_id": 139,
+      "timestamps": {
+        "first_cross": 7.233180570221753,
+        "last_cross": 7.6331721224920805
+      },
+      "registered_speed": 108.00228093518346,
+      "type_of_vehicle": "Carro",
+      "side": "down",
+      "confidence": 0.7639768719673157,
+      "model_info": {
+        "distance_M": 12.0,
+        "model_name": "yolo11n",
+        "confidence_threshold": 0.2,
+        "date": "2025-06-11T16:03:22.211175"
+      }
+    },
+    {
+      "unique_id": 152,
+      "timestamps": {
+        "first_cross": 6.899854276663147,
+        "last_cross": 7.833167898627244
+      },
+      "registered_speed": 46.28669182936432,
+      "type_of_vehicle": "Carro",
+      "side": "up",
+      "confidence": 0.7889227867126465,
+      "model_info": {
+        "distance_M": 12.0,
+        "model_name": "yolo11n",
+        "confidence_threshold": 0.2,
+        "date": "2025-06-11T16:03:22.211175"
+      }
+    },
+    {
+      "unique_id": 159,
+      "timestamps": {
+        "first_cross": 7.566506863780359,
+        "last_cross": 8.69981626187962
+      },
+      "registered_speed": 38.11845209477059,
+      "type_of_vehicle": "Carro",
+      "side": "up",
+      "confidence": 0.7066507935523987,
+      "model_info": {
+        "distance_M": 12.0,
+        "model_name": "yolo11n",
+        "confidence_threshold": 0.2,
+        "date": "2025-06-11T16:03:22.211175"
+      }
+    },
+    {
+      "unique_id": 167,
+      "timestamps": {
+        "first_cross": 8.533153115100317,
+        "last_cross": 8.966477296726504
+      },
+      "registered_speed": 99.69441317093882,
+      "type_of_vehicle": "Carro",
+      "side": "down",
+      "confidence": 0.8394187688827515,
+      "model_info": {
+        "distance_M": 12.0,
+        "model_name": "yolo11n",
+        "confidence_threshold": 0.2,
+        "date": "2025-06-11T16:03:22.211175"
+      }
+    },
+    {
+      "unique_id": 138,
+      "timestamps": {
+        "first_cross": 8.73314889123548,
+        "last_cross": 9.26647096092925
+      },
+      "registered_speed": 81.00171070138741,
+      "type_of_vehicle": "Carro",
+      "side": "down",
+      "confidence": 0.4190596044063568,
+      "model_info": {
+        "distance_M": 12.0,
+        "model_name": "yolo11n",
+        "confidence_threshold": 0.2,
+        "date": "2025-06-11T16:03:22.211175"
+      }
+    },
+    {
+      "unique_id": 195,
+      "timestamps": {
+        "first_cross": 8.866479408658924,
+        "last_cross": 9.86645828933474
+      },
+      "registered_speed": 43.20091237407342,
+      "type_of_vehicle": "Carro",
+      "side": "up",
+      "confidence": 0.684587836265564,
+      "model_info": {
+        "distance_M": 12.0,
+        "model_name": "yolo11n",
+        "confidence_threshold": 0.2,
+        "date": "2025-06-11T16:03:22.211175"
+      }
+    },
+    {
+      "unique_id": 193,
+      "timestamps": {
+        "first_cross": 9.466466737064414,
+        "last_cross": 10.033121436114044
+      },
+      "registered_speed": 76.23690418954125,
+      "type_of_vehicle": "Carro",
+      "side": "down",
+      "confidence": 0.84260493516922,
+      "model_info": {
+        "distance_M": 12.0,
+        "model_name": "yolo11n",
+        "confidence_threshold": 0.2,
+        "date": "2025-06-11T16:03:22.211175"
+      }
+    },
+    {
+      "unique_id": 210,
+      "timestamps": {
+        "first_cross": 8.866479408658924,
+        "last_cross": 10.033121436114044
+      },
+      "registered_speed": 37.02935346349149,
+      "type_of_vehicle": "Caminh\u00e3o",
+      "side": "up",
+      "confidence": 0.46213188767433167,
+      "model_info": {
+        "distance_M": 12.0,
+        "model_name": "yolo11n",
+        "confidence_threshold": 0.2,
+        "date": "2025-06-11T16:03:22.211175"
+      }
+    },
+    {
+      "unique_id": 163,
+      "timestamps": {
+        "first_cross": 9.633129883843717,
+        "last_cross": 10.066454065469905
+      },
+      "registered_speed": 99.69441317093842,
+      "type_of_vehicle": "Carro",
+      "side": "down",
+      "confidence": 0.8481085896492004,
+      "model_info": {
+        "distance_M": 12.0,
+        "model_name": "yolo11n",
+        "confidence_threshold": 0.2,
+        "date": "2025-06-11T16:03:22.211175"
+      }
+    },
+    {
+      "unique_id": 198,
+      "timestamps": {
+        "first_cross": 9.133140443505807,
+        "last_cross": 10.199784582893347
+      },
+      "registered_speed": 40.500855350693776,
+      "type_of_vehicle": "Carro",
+      "side": "up",
+      "confidence": 0.7151030898094177,
+      "model_info": {
+        "distance_M": 12.0,
+        "model_name": "yolo11n",
+        "confidence_threshold": 0.2,
+        "date": "2025-06-11T16:03:22.211175"
+      }
+    },
+    {
+      "unique_id": 229,
+      "timestamps": {
+        "first_cross": 10.833104540654698,
+        "last_cross": 11.36642661034847
+      },
+      "registered_speed": 81.00171070138741,
+      "type_of_vehicle": "Carro",
+      "side": "down",
+      "confidence": 0.7989206314086914,
+      "model_info": {
+        "distance_M": 12.0,
+        "model_name": "yolo11n",
+        "confidence_threshold": 0.2,
+        "date": "2025-06-11T16:03:22.211175"
+      }
+    },
+    {
+      "unique_id": 252,
+      "timestamps": {
+        "first_cross": 10.666441393875395,
+        "last_cross": 11.799750791974658
+      },
+      "registered_speed": 38.11845209477056,
+      "type_of_vehicle": "Carro",
+      "side": "up",
+      "confidence": 0.6720726490020752,
+      "model_info": {
+        "distance_M": 12.0,
+        "model_name": "yolo11n",
+        "confidence_threshold": 0.2,
+        "date": "2025-06-11T16:03:22.211175"
+      }
+    },
+    {
+      "unique_id": 194,
+      "timestamps": {
+        "first_cross": 11.533089757127772,
+        "last_cross": 11.899748680042238
+      },
+      "registered_speed": 117.82067011110948,
+      "type_of_vehicle": "Carro",
+      "side": "down",
+      "confidence": 0.48191025853157043,
+      "model_info": {
+        "distance_M": 12.0,
+        "model_name": "yolo11n",
+        "confidence_threshold": 0.2,
+        "date": "2025-06-11T16:03:22.211175"
+      }
+    },
+    {
+      "unique_id": 247,
+      "timestamps": {
+        "first_cross": 11.733085533262935,
+        "last_cross": 12.133077085533262
+      },
+      "registered_speed": 108.00228093518346,
+      "type_of_vehicle": "Carro",
+      "side": "down",
+      "confidence": 0.8077902793884277,
+      "model_info": {
+        "distance_M": 12.0,
+        "model_name": "yolo11n",
+        "confidence_threshold": 0.2,
+        "date": "2025-06-11T16:03:22.211175"
+      }
+    },
+    {
+      "unique_id": 255,
+      "timestamps": {
+        "first_cross": 11.299761351636748,
+        "last_cross": 12.366405491024288
+      },
+      "registered_speed": 40.500855350693776,
+      "type_of_vehicle": "Carro",
+      "side": "up",
+      "confidence": 0.8334833979606628,
+      "model_info": {
+        "distance_M": 12.0,
+        "model_name": "yolo11n",
+        "confidence_threshold": 0.2,
+        "date": "2025-06-11T16:03:22.211175"
+      }
+    },
+    {
+      "unique_id": 258,
+      "timestamps": {
+        "first_cross": 11.133098204857445,
+        "last_cross": 12.399738120380148
+      },
+      "registered_speed": 34.10598345321584,
+      "type_of_vehicle": "Carro",
+      "side": "up",
+      "confidence": 0.35599368810653687,
+      "model_info": {
+        "distance_M": 12.0,
+        "model_name": "yolo11n",
+        "confidence_threshold": 0.2,
+        "date": "2025-06-11T16:03:22.211175"
+      }
+    },
+    {
+      "unique_id": 301,
+      "timestamps": {
+        "first_cross": 12.266407602956706,
+        "last_cross": 12.733064413938754
+      },
+      "registered_speed": 92.57338365872873,
+      "type_of_vehicle": "Caminh\u00e3o",
+      "side": "up",
+      "confidence": 0.8418378829956055,
+      "model_info": {
+        "distance_M": 12.0,
+        "model_name": "yolo11n",
+        "confidence_threshold": 0.2,
+        "date": "2025-06-11T16:03:22.211175"
+      }
+    },
+    {
+      "unique_id": 276,
+      "timestamps": {
+        "first_cross": 12.966392819429778,
+        "last_cross": 13.499714889123549
+      },
+      "registered_speed": 81.00171070138741,
+      "type_of_vehicle": "Carro",
+      "side": "down",
+      "confidence": 0.8204057812690735,
+      "model_info": {
+        "distance_M": 12.0,
+        "model_name": "yolo11n",
+        "confidence_threshold": 0.2,
+        "date": "2025-06-11T16:03:22.211175"
+      }
+    },
+    {
+      "unique_id": 286,
+      "timestamps": {
+        "first_cross": 13.766375923970433,
+        "last_cross": 14.16636747624076
+      },
+      "registered_speed": 108.00228093518346,
+      "type_of_vehicle": "Carro",
+      "side": "down",
+      "confidence": 0.7500630617141724,
+      "model_info": {
+        "distance_M": 12.0,
+        "model_name": "yolo11n",
+        "confidence_threshold": 0.2,
+        "date": "2025-06-11T16:03:22.211175"
+      }
+    },
+    {
+      "unique_id": 299,
+      "timestamps": {
+        "first_cross": 13.033058078141499,
+        "last_cross": 14.16636747624076
+      },
+      "registered_speed": 38.118452094770625,
+      "type_of_vehicle": "Carro",
+      "side": "up",
+      "confidence": 0.6580731868743896,
+      "model_info": {
+        "distance_M": 12.0,
+        "model_name": "yolo11n",
+        "confidence_threshold": 0.2,
+        "date": "2025-06-11T16:03:22.211175"
+      }
+    },
+    {
+      "unique_id": 298,
+      "timestamps": {
+        "first_cross": 13.933039070749736,
+        "last_cross": 14.499693769799366
+      },
+      "registered_speed": 76.23690418954125,
+      "type_of_vehicle": "Carro",
+      "side": "down",
+      "confidence": 0.7677420973777771,
+      "model_info": {
+        "distance_M": 12.0,
+        "model_name": "yolo11n",
+        "confidence_threshold": 0.2,
+        "date": "2025-06-11T16:03:22.211175"
+      }
+    },
+    {
+      "unique_id": 319,
+      "timestamps": {
+        "first_cross": 13.966371700105597,
+        "last_cross": 15.033015839493137
+      },
+      "registered_speed": 40.500855350693776,
+      "type_of_vehicle": "Carro",
+      "side": "up",
+      "confidence": 0.8020796179771423,
+      "model_info": {
+        "distance_M": 12.0,
+        "model_name": "yolo11n",
+        "confidence_threshold": 0.2,
+        "date": "2025-06-11T16:03:22.211175"
+      }
+    },
+    {
+      "unique_id": 327,
+      "timestamps": {
+        "first_cross": 14.899685322069693,
+        "last_cross": 15.29967687434002
+      },
+      "registered_speed": 108.00228093518346,
+      "type_of_vehicle": "Carro",
+      "side": "down",
+      "confidence": 0.7464786767959595,
+      "model_info": {
+        "distance_M": 12.0,
+        "model_name": "yolo11n",
+        "confidence_threshold": 0.2,
+        "date": "2025-06-11T16:03:22.211175"
+      }
+    },
+    {
+      "unique_id": 328,
+      "timestamps": {
+        "first_cross": 15.033015839493137,
+        "last_cross": 15.599670538542767
+      },
+      "registered_speed": 76.23690418954125,
+      "type_of_vehicle": "Carro",
+      "side": "down",
+      "confidence": 0.8037018775939941,
+      "model_info": {
+        "distance_M": 12.0,
+        "model_name": "yolo11n",
+        "confidence_threshold": 0.2,
+        "date": "2025-06-11T16:03:22.211175"
+      }
+    },
+    {
+      "unique_id": 344,
+      "timestamps": {
+        "first_cross": 14.999683210137276,
+        "last_cross": 15.966329461457233
+      },
+      "registered_speed": 44.690599007662115,
+      "type_of_vehicle": "Carro",
+      "side": "up",
+      "confidence": 0.714666485786438,
+      "model_info": {
+        "distance_M": 12.0,
+        "model_name": "yolo11n",
+        "confidence_threshold": 0.2,
+        "date": "2025-06-11T16:03:22.211175"
+      }
+    },
+    {
+      "unique_id": 372,
+      "timestamps": {
+        "first_cross": 15.932996832101374,
+        "last_cross": 16.499651531151002
+      },
+      "registered_speed": 76.23690418954148,
+      "type_of_vehicle": "Carro",
+      "side": "down",
+      "confidence": 0.8415461778640747,
+      "model_info": {
+        "distance_M": 12.0,
+        "model_name": "yolo11n",
+        "confidence_threshold": 0.2,
+        "date": "2025-06-11T16:03:22.211175"
+      }
+    },
+    {
+      "unique_id": 369,
+      "timestamps": {
+        "first_cross": 16.066327349524816,
+        "last_cross": 17.2663020063358
+      },
+      "registered_speed": 36.00076031172777,
+      "type_of_vehicle": "Carro",
+      "side": "up",
+      "confidence": 0.782815158367157,
+      "model_info": {
+        "distance_M": 12.0,
+        "model_name": "yolo11n",
+        "confidence_threshold": 0.2,
+        "date": "2025-06-11T16:03:22.211175"
+      }
+    },
+    {
+      "unique_id": 429,
+      "timestamps": {
+        "first_cross": 16.799645195353747,
+        "last_cross": 17.432965153115102
+      },
+      "registered_speed": 68.2119669064313,
+      "type_of_vehicle": "Caminh\u00e3o",
+      "side": "up",
+      "confidence": 0.7552250623703003,
+      "model_info": {
+        "distance_M": 12.0,
+        "model_name": "yolo11n",
+        "confidence_threshold": 0.2,
+        "date": "2025-06-11T16:03:22.211175"
+      }
+    },
+    {
+      "unique_id": 380,
+      "timestamps": {
+        "first_cross": 16.066327349524816,
+        "last_cross": 17.432965153115102
+      },
+      "registered_speed": 31.610423688346334,
+      "type_of_vehicle": "Carro",
+      "side": "up",
+      "confidence": 0.3825778365135193,
+      "model_info": {
+        "distance_M": 12.0,
+        "model_name": "yolo11n",
+        "confidence_threshold": 0.2,
+        "date": "2025-06-11T16:03:22.211175"
+      }
+    },
+    {
+      "unique_id": 419,
+      "timestamps": {
+        "first_cross": 17.332967265047518,
+        "last_cross": 17.89962196409715
+      },
+      "registered_speed": 76.23690418954101,
+      "type_of_vehicle": "Carro",
+      "side": "down",
+      "confidence": 0.7665124535560608,
+      "model_info": {
+        "distance_M": 12.0,
+        "model_name": "yolo11n",
+        "confidence_threshold": 0.2,
+        "date": "2025-06-11T16:03:22.211175"
+      }
+    },
+    {
+      "unique_id": 409,
+      "timestamps": {
+        "first_cross": 17.132971488912354,
+        "last_cross": 18.332946145723337
+      },
+      "registered_speed": 36.00076031172777,
+      "type_of_vehicle": "Carro",
+      "side": "up",
+      "confidence": 0.672751247882843,
+      "model_info": {
+        "distance_M": 12.0,
+        "model_name": "yolo11n",
+        "confidence_threshold": 0.2,
+        "date": "2025-06-11T16:03:22.211175"
+      }
+    },
+    {
+      "unique_id": 368,
+      "timestamps": {
+        "first_cross": 17.96628722280887,
+        "last_cross": 18.332946145723337
+      },
+      "registered_speed": 117.8206701111089,
+      "type_of_vehicle": "Carro",
+      "side": "down",
+      "confidence": 0.6491660475730896,
+      "model_info": {
+        "distance_M": 12.0,
+        "model_name": "yolo11n",
+        "confidence_threshold": 0.2,
+        "date": "2025-06-11T16:03:22.211175"
+      }
+    },
+    {
+      "unique_id": 483,
+      "timestamps": {
+        "first_cross": 18.432944033790918,
+        "last_cross": 18.766270327349524
+      },
+      "registered_speed": 129.60273712222005,
+      "type_of_vehicle": "Carro",
+      "side": "down",
+      "confidence": 0.6856877207756042,
+      "model_info": {
+        "distance_M": 12.0,
+        "model_name": "yolo11n",
+        "confidence_threshold": 0.2,
+        "date": "2025-06-11T16:03:22.211175"
+      }
+    },
+    {
+      "unique_id": 443,
+      "timestamps": {
+        "first_cross": 18.299613516367476,
+        "last_cross": 18.866268215417108
+      },
+      "registered_speed": 76.23690418954101,
+      "type_of_vehicle": "Carro",
+      "side": "down",
+      "confidence": 0.24614852666854858,
+      "model_info": {
+        "distance_M": 12.0,
+        "model_name": "yolo11n",
+        "confidence_threshold": 0.2,
+        "date": "2025-06-11T16:03:22.211175"
+      }
+    },
+    {
+      "unique_id": 417,
+      "timestamps": {
+        "first_cross": 18.566274551214363,
+        "last_cross": 18.96626610348469
+      },
+      "registered_speed": 108.00228093518393,
+      "type_of_vehicle": "Carro",
+      "side": "down",
+      "confidence": 0.8128461241722107,
+      "model_info": {
+        "distance_M": 12.0,
+        "model_name": "yolo11n",
+        "confidence_threshold": 0.2,
+        "date": "2025-06-11T16:03:22.211175"
+      }
+    },
+    {
+      "unique_id": 460,
+      "timestamps": {
+        "first_cross": 18.566274551214363,
+        "last_cross": 18.99959873284055
+      },
+      "registered_speed": 99.69441317093882,
+      "type_of_vehicle": "Carro",
+      "side": "down",
+      "confidence": 0.8049556612968445,
+      "model_info": {
+        "distance_M": 12.0,
+        "model_name": "yolo11n",
+        "confidence_threshold": 0.2,
+        "date": "2025-06-11T16:03:22.211175"
+      }
+    },
+    {
+      "unique_id": 452,
+      "timestamps": {
+        "first_cross": 18.49960929250264,
+        "last_cross": 19.56625343189018
+      },
+      "registered_speed": 40.50085535069384,
+      "type_of_vehicle": "Carro",
+      "side": "up",
+      "confidence": 0.7959973216056824,
+      "model_info": {
+        "distance_M": 12.0,
+        "model_name": "yolo11n",
+        "confidence_threshold": 0.2,
+        "date": "2025-06-11T16:03:22.211175"
+      }
+    },
+    {
+      "unique_id": 498,
+      "timestamps": {
+        "first_cross": 19.59958606124604,
+        "last_cross": 20.09957550158395
+      },
+      "registered_speed": 86.40182474814668,
+      "type_of_vehicle": "Carro",
+      "side": "down",
+      "confidence": 0.8332481980323792,
+      "model_info": {
+        "distance_M": 12.0,
+        "model_name": "yolo11n",
+        "confidence_threshold": 0.2,
+        "date": "2025-06-11T16:03:22.211175"
+      }
+    },
+    {
+      "unique_id": 479,
+      "timestamps": {
+        "first_cross": 20.366236536430833,
+        "last_cross": 20.766228088701162
+      },
+      "registered_speed": 108.00228093518298,
+      "type_of_vehicle": "Carro",
+      "side": "down",
+      "confidence": 0.8320003747940063,
+      "model_info": {
+        "distance_M": 12.0,
+        "model_name": "yolo11n",
+        "confidence_threshold": 0.2,
+        "date": "2025-06-11T16:03:22.211175"
+      }
+    },
+    {
+      "unique_id": 512,
+      "timestamps": {
+        "first_cross": 20.566232312565997,
+        "last_cross": 21.099554382259768
+      },
+      "registered_speed": 81.00171070138741,
+      "type_of_vehicle": "Carro",
+      "side": "down",
+      "confidence": 0.7367879748344421,
+      "model_info": {
+        "distance_M": 12.0,
+        "model_name": "yolo11n",
+        "confidence_threshold": 0.2,
+        "date": "2025-06-11T16:03:22.211175"
+      }
+    },
+    {
+      "unique_id": 504,
+      "timestamps": {
+        "first_cross": 20.032910242872227,
+        "last_cross": 21.33288278775079
+      },
+      "registered_speed": 33.231471056979515,
+      "type_of_vehicle": "Carro",
+      "side": "up",
+      "confidence": 0.7111864686012268,
+      "model_info": {
+        "distance_M": 12.0,
+        "model_name": "yolo11n",
+        "confidence_threshold": 0.2,
+        "date": "2025-06-11T16:03:22.211175"
+      }
+    },
+    {
+      "unique_id": 536,
+      "timestamps": {
+        "first_cross": 21.19955227032735,
+        "last_cross": 22.499524815205913
+      },
+      "registered_speed": 33.231471056979515,
+      "type_of_vehicle": "Carro",
+      "side": "up",
+      "confidence": 0.5894157290458679,
+      "model_info": {
+        "distance_M": 12.0,
+        "model_name": "yolo11n",
+        "confidence_threshold": 0.2,
+        "date": "2025-06-11T16:03:22.211175"
+      }
+    },
+    {
+      "unique_id": 539,
+      "timestamps": {
+        "first_cross": 22.099533262935587,
+        "last_cross": 22.666187961985216
+      },
+      "registered_speed": 76.23690418954148,
+      "type_of_vehicle": "Carro",
+      "side": "down",
+      "confidence": 0.6655980944633484,
+      "model_info": {
+        "distance_M": 12.0,
+        "model_name": "yolo11n",
+        "confidence_threshold": 0.2,
+        "date": "2025-06-11T16:03:22.211175"
+      }
+    },
+    {
+      "unique_id": 543,
+      "timestamps": {
+        "first_cross": 21.499545934530094,
+        "last_cross": 22.699520591341077
+      },
+      "registered_speed": 36.00076031172777,
+      "type_of_vehicle": "Carro",
+      "side": "up",
+      "confidence": 0.7318365573883057,
+      "model_info": {
+        "distance_M": 12.0,
+        "model_name": "yolo11n",
+        "confidence_threshold": 0.2,
+        "date": "2025-06-11T16:03:22.211175"
+      }
+    },
+    {
+      "unique_id": 525,
+      "timestamps": {
+        "first_cross": 22.432859556494193,
+        "last_cross": 22.86618373812038
+      },
+      "registered_speed": 99.69441317093882,
+      "type_of_vehicle": "Carro",
+      "side": "down",
+      "confidence": 0.7503044009208679,
+      "model_info": {
+        "distance_M": 12.0,
+        "model_name": "yolo11n",
+        "confidence_threshold": 0.2,
+        "date": "2025-06-11T16:03:22.211175"
+      }
+    },
+    {
+      "unique_id": 545,
+      "timestamps": {
+        "first_cross": 21.666209081309397,
+        "last_cross": 22.89951636747624
+      },
+      "registered_speed": 35.02776678978916,
+      "type_of_vehicle": "Carro",
+      "side": "up",
+      "confidence": 0.6802079081535339,
+      "model_info": {
+        "distance_M": 12.0,
+        "model_name": "yolo11n",
+        "confidence_threshold": 0.2,
+        "date": "2025-06-11T16:03:22.211175"
+      }
+    },
+    {
+      "unique_id": 549,
+      "timestamps": {
+        "first_cross": 22.96618162618796,
+        "last_cross": 23.432838437170012
+      },
+      "registered_speed": 92.57338365872803,
+      "type_of_vehicle": "Carro",
+      "side": "down",
+      "confidence": 0.7963337302207947,
+      "model_info": {
+        "distance_M": 12.0,
+        "model_name": "yolo11n",
+        "confidence_threshold": 0.2,
+        "date": "2025-06-11T16:03:22.211175"
+      }
+    },
+    {
+      "unique_id": 573,
+      "timestamps": {
+        "first_cross": 22.499524815205913,
+        "last_cross": 23.632834213305173
+      },
+      "registered_speed": 38.118452094770625,
+      "type_of_vehicle": "Carro",
+      "side": "up",
+      "confidence": 0.7151028513908386,
+      "model_info": {
+        "distance_M": 12.0,
+        "model_name": "yolo11n",
+        "confidence_threshold": 0.2,
+        "date": "2025-06-11T16:03:22.211175"
+      }
+    },
+    {
+      "unique_id": 565,
+      "timestamps": {
+        "first_cross": 23.46617106652587,
+        "last_cross": 23.89949524815206
+      },
+      "registered_speed": 99.694413170938,
+      "type_of_vehicle": "Carro",
+      "side": "down",
+      "confidence": 0.7948464155197144,
+      "model_info": {
+        "distance_M": 12.0,
+        "model_name": "yolo11n",
+        "confidence_threshold": 0.2,
+        "date": "2025-06-11T16:03:22.211175"
+      }
+    },
+    {
+      "unique_id": 587,
+      "timestamps": {
+        "first_cross": 22.83285110876452,
+        "last_cross": 24.032825765575502
+      },
+      "registered_speed": 36.00076031172777,
+      "type_of_vehicle": "Carro",
+      "side": "up",
+      "confidence": 0.4399144947528839,
+      "model_info": {
+        "distance_M": 12.0,
+        "model_name": "yolo11n",
+        "confidence_threshold": 0.2,
+        "date": "2025-06-11T16:03:22.211175"
+      }
+    },
+    {
+      "unique_id": 591,
+      "timestamps": {
+        "first_cross": 23.49950369588173,
+        "last_cross": 24.066158394931364
+      },
+      "registered_speed": 76.23690418954101,
+      "type_of_vehicle": "Carro",
+      "side": "down",
+      "confidence": 0.7644698619842529,
+      "model_info": {
+        "distance_M": 12.0,
+        "model_name": "yolo11n",
+        "confidence_threshold": 0.2,
+        "date": "2025-06-11T16:03:22.211175"
+      }
+    },
+    {
+      "unique_id": 609,
+      "timestamps": {
+        "first_cross": 24.832808870116157,
+        "last_cross": 25.299465681098205
+      },
+      "registered_speed": 92.57338365872873,
+      "type_of_vehicle": "Carro",
+      "side": "down",
+      "confidence": 0.6590161323547363,
+      "model_info": {
+        "distance_M": 12.0,
+        "model_name": "yolo11n",
+        "confidence_threshold": 0.2,
+        "date": "2025-06-11T16:03:22.211175"
+      }
+    },
+    {
+      "unique_id": 621,
+      "timestamps": {
+        "first_cross": 25.799455121436115,
+        "last_cross": 26.266111932418163
+      },
+      "registered_speed": 92.57338365872873,
+      "type_of_vehicle": "Carro",
+      "side": "down",
+      "confidence": 0.8517468571662903,
+      "model_info": {
+        "distance_M": 12.0,
+        "model_name": "yolo11n",
+        "confidence_threshold": 0.2,
+        "date": "2025-06-11T16:03:22.211175"
+      }
+    },
+    {
+      "unique_id": 630,
+      "timestamps": {
+        "first_cross": 25.166135163674763,
+        "last_cross": 26.466107708553327
+      },
+      "registered_speed": 33.231471056979515,
+      "type_of_vehicle": "Carro",
+      "side": "up",
+      "confidence": 0.546693742275238,
+      "model_info": {
+        "distance_M": 12.0,
+        "model_name": "yolo11n",
+        "confidence_threshold": 0.2,
+        "date": "2025-06-11T16:03:22.211175"
+      }
+    },
+    {
+      "unique_id": 626,
+      "timestamps": {
+        "first_cross": 26.166114044350582,
+        "last_cross": 26.69943611404435
+      },
+      "registered_speed": 81.00171070138796,
+      "type_of_vehicle": "Carro",
+      "side": "down",
+      "confidence": 0.8220749497413635,
+      "model_info": {
+        "distance_M": 12.0,
+        "model_name": "yolo11n",
+        "confidence_threshold": 0.2,
+        "date": "2025-06-11T16:03:22.211175"
+      }
+    },
+    {
+      "unique_id": 643,
+      "timestamps": {
+        "first_cross": 25.766122492080253,
+        "last_cross": 26.899431890179514
+      },
+      "registered_speed": 38.118452094770625,
+      "type_of_vehicle": "Carro",
+      "side": "up",
+      "confidence": 0.7247475981712341,
+      "model_info": {
+        "distance_M": 12.0,
+        "model_name": "yolo11n",
+        "confidence_threshold": 0.2,
+        "date": "2025-06-11T16:03:22.211175"
+      }
+    },
+    {
+      "unique_id": 635,
+      "timestamps": {
+        "first_cross": 26.799434002111933,
+        "last_cross": 27.26609081309398
+      },
+      "registered_speed": 92.57338365872873,
+      "type_of_vehicle": "Carro",
+      "side": "down",
+      "confidence": 0.7881736755371094,
+      "model_info": {
+        "distance_M": 12.0,
+        "model_name": "yolo11n",
+        "confidence_threshold": 0.2,
+        "date": "2025-06-11T16:03:22.211175"
+      }
+    },
+    {
+      "unique_id": 663,
+      "timestamps": {
+        "first_cross": 26.366109820485743,
+        "last_cross": 27.566084477296727
+      },
+      "registered_speed": 36.00076031172777,
+      "type_of_vehicle": "Carro",
+      "side": "up",
+      "confidence": 0.5210990309715271,
+      "model_info": {
+        "distance_M": 12.0,
+        "model_name": "yolo11n",
+        "confidence_threshold": 0.2,
+        "date": "2025-06-11T16:03:22.211175"
+      }
+    },
+    {
+      "unique_id": 670,
+      "timestamps": {
+        "first_cross": 27.566084477296727,
+        "last_cross": 28.032741288278775
+      },
+      "registered_speed": 92.57338365872873,
+      "type_of_vehicle": "Carro",
+      "side": "down",
+      "confidence": 0.7484937906265259,
+      "model_info": {
+        "distance_M": 12.0,
+        "model_name": "yolo11n",
+        "confidence_threshold": 0.2,
+        "date": "2025-06-11T16:03:22.211175"
+      }
+    },
+    {
+      "unique_id": 669,
+      "timestamps": {
+        "first_cross": 27.599417106652588,
+        "last_cross": 28.066073917634636
+      },
+      "registered_speed": 92.57338365872873,
+      "type_of_vehicle": "Carro",
+      "side": "down",
+      "confidence": 0.5494353175163269,
+      "model_info": {
+        "distance_M": 12.0,
+        "model_name": "yolo11n",
+        "confidence_threshold": 0.2,
+        "date": "2025-06-11T16:03:22.211175"
+      }
+    },
+    {
+      "unique_id": 676,
+      "timestamps": {
+        "first_cross": 26.866099260823653,
+        "last_cross": 28.23273706441394
+      },
+      "registered_speed": 31.610423688346334,
+      "type_of_vehicle": "Carro",
+      "side": "up",
+      "confidence": 0.531559944152832,
+      "model_info": {
+        "distance_M": 12.0,
+        "model_name": "yolo11n",
+        "confidence_threshold": 0.2,
+        "date": "2025-06-11T16:03:22.211175"
+      }
+    },
+    {
+      "unique_id": 689,
+      "timestamps": {
+        "first_cross": 27.432753959873285,
+        "last_cross": 28.632728616684265
+      },
+      "registered_speed": 36.00076031172787,
+      "type_of_vehicle": "Carro",
+      "side": "up",
+      "confidence": 0.7737328410148621,
+      "model_info": {
+        "distance_M": 12.0,
+        "model_name": "yolo11n",
+        "confidence_threshold": 0.2,
+        "date": "2025-06-11T16:03:22.211175"
+      }
+    },
+    {
+      "unique_id": 688,
+      "timestamps": {
+        "first_cross": 28.83272439281943,
+        "last_cross": 29.299381203801477
+      },
+      "registered_speed": 92.57338365872873,
+      "type_of_vehicle": "Carro",
+      "side": "down",
+      "confidence": 0.7662222981452942,
+      "model_info": {
+        "distance_M": 12.0,
+        "model_name": "yolo11n",
+        "confidence_threshold": 0.2,
+        "date": "2025-06-11T16:03:22.211175"
+      }
+    },
+    {
+      "unique_id": 686,
+      "timestamps": {
+        "first_cross": 28.999387539598732,
+        "last_cross": 29.499376979936642
+      },
+      "registered_speed": 86.40182474814668,
+      "type_of_vehicle": "Carro",
+      "side": "down",
+      "confidence": 0.6507055163383484,
+      "model_info": {
+        "distance_M": 12.0,
+        "model_name": "yolo11n",
+        "confidence_threshold": 0.2,
+        "date": "2025-06-11T16:03:22.211175"
+      }
+    },
+    {
+      "unique_id": 699,
+      "timestamps": {
+        "first_cross": 29.099385427666316,
+        "last_cross": 29.566042238648365
+      },
+      "registered_speed": 92.57338365872873,
+      "type_of_vehicle": "Carro",
+      "side": "down",
+      "confidence": 0.7960634827613831,
+      "model_info": {
+        "distance_M": 12.0,
+        "model_name": "yolo11n",
+        "confidence_threshold": 0.2,
+        "date": "2025-06-11T16:03:22.211175"
+      }
+    },
+    {
+      "unique_id": 709,
+      "timestamps": {
+        "first_cross": 28.73272650475185,
+        "last_cross": 30.032699049630413
+      },
+      "registered_speed": 33.231471056979515,
+      "type_of_vehicle": "Carro",
+      "side": "up",
+      "confidence": 0.7008395195007324,
+      "model_info": {
+        "distance_M": 12.0,
+        "model_name": "yolo11n",
+        "confidence_threshold": 0.2,
+        "date": "2025-06-11T16:03:22.211175"
+      }
+    },
+    {
+      "unique_id": 725,
+      "timestamps": {
+        "first_cross": 29.199383315733897,
+        "last_cross": 30.36602534318902
+      },
+      "registered_speed": 37.02935346349144,
+      "type_of_vehicle": "Carro",
+      "side": "up",
+      "confidence": 0.8017271161079407,
+      "model_info": {
+        "distance_M": 12.0,
+        "model_name": "yolo11n",
+        "confidence_threshold": 0.2,
+        "date": "2025-06-11T16:03:22.211175"
+      }
+    },
+    {
+      "unique_id": 741,
+      "timestamps": {
+        "first_cross": 29.33271383315734,
+        "last_cross": 30.432690601900738
+      },
+      "registered_speed": 39.273556703703086,
+      "type_of_vehicle": "Carro",
+      "side": "up",
+      "confidence": 0.49063074588775635,
+      "model_info": {
+        "distance_M": 12.0,
+        "model_name": "yolo11n",
+        "confidence_threshold": 0.2,
+        "date": "2025-06-11T16:03:22.211175"
+      }
+    },
+    {
+      "unique_id": 724,
+      "timestamps": {
+        "first_cross": 30.099364308342132,
+        "last_cross": 30.666019007391764
+      },
+      "registered_speed": 76.23690418954101,
+      "type_of_vehicle": "Carro",
+      "side": "down",
+      "confidence": 0.8334092497825623,
+      "model_info": {
+        "distance_M": 12.0,
+        "model_name": "yolo11n",
+        "confidence_threshold": 0.2,
+        "date": "2025-06-11T16:03:22.211175"
+      }
+    },
+    {
+      "unique_id": 722,
+      "timestamps": {
+        "first_cross": 30.49935586061246,
+        "last_cross": 30.89934741288279
+      },
+      "registered_speed": 108.00228093518298,
+      "type_of_vehicle": "Carro",
+      "side": "down",
+      "confidence": 0.6747344136238098,
+      "model_info": {
+        "distance_M": 12.0,
+        "model_name": "yolo11n",
+        "confidence_threshold": 0.2,
+        "date": "2025-06-11T16:03:22.211175"
+      }
+    }
+  ]
+}

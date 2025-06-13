@@ -1,4 +1,50 @@
+# Visão Computacional - Substitutiva Tech Challenge 4  
+## Pós-Tech em Inteligência Artificial - FIAP  
+## Augusto Vieira Favi - RM355226 
+
+---
+
+# Análise Inteligente de Vídeo com Visão Computacional
+
+Este projeto utiliza técnicas de **visão computacional** e **inteligência artificial** para analisar padrões de movimentação em vídeos. A solução foi desenvolvida com foco na detecção de atividades, rastreamento de objetos e identificação de eventos anômalos.
+
+## Objetivos
+
+1. **Detecção e Rastreamento**  
+   Identificar e acompanhar pessoas e objetos com identificadores únicos ao longo do vídeo.
+
+2. **Classificação de Atividades**  
+   Detectar e classificar ações como andar, correr, interagir com objetos ou ficar parado.
+
+3. **Detecção de Anomalias**  
+   Identificar comportamentos incomuns e classificá-los por níveis de severidade.
+
+4. **Geração de Relatório**  
+   Criar um resumo automático com estatísticas, padrões comportamentais e alertas.
+
+---  
+
+# Estrutura do Projeto
+.
+├── LEGACY/                         # Modelos Iniciais que foram abandonados
+├── models/                         # Pasta para modelos pré-treinados (YOLO, OpenPose, etc.)
+├── reports/                        # Relatórios gerados para entrega ( E seus Jsons)
+├── videos/                         # Videos utilizados no projeto
+│   ├── input/                      # Vídeos de entrada
+│   └── output/                     # Resultados processados
+├── requirements.txt                # Dependências do projeto
+├── running_tracker.py              # Gera Vídeo de classificação de corrida, com estado atual da corrida (caminhando, correndo, parado)
+├── traffic_tracker.py              # Codigo que gera o vídeo de rastreamento de veiculos
+├── traffic_report_generator.py     # Gera relatório de tráfego com estatísticas e padrões
+├── traffic_main.py                 # Script que executa o projeto
+└── README.md                       # Documentação do projeto
+
+
+
 # SETUP
 python -m venv .venv
 .venv\Scripts\activate.bat
 pip install -r requirements.txt
+
+# Link do Vídeo de Demonstração do Projeto
+https://www.youtube.com/
